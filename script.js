@@ -1,4 +1,4 @@
- // git and git hub are used for version control .
+// git and git hub are used for version control .
 // Version is a system that records changes to code over time
 // so that you can track history , collaborate safely
 // and revert to previous state
@@ -111,4 +111,60 @@ quoteBtn.addEventListener("click", () => {
   showRandomQuote();
 });
 
+//declare an add function.
 
+function addQuote() {
+  const quote = quoteInput.value.trim();
+
+  if (!quote) {
+    return;
+  }
+
+  quotes.push(quote);
+
+  saveQuotes();
+
+  quoteInput.value = "";
+}
+
+addBtn.addEventListener("click", () => {
+  addQuote();
+
+  console.log(quotes);
+});
+
+//save the quotes to local storage
+function saveQuotes() {
+  localStorage.setItem("quotes", JSON.stringify(quotes));
+}
+
+//getquote function
+
+function getQuote() {
+  const savedQuotes = JSON.parse(localStorage.getItem("quotes"));
+  if (!savedQuotes) {
+    return;
+  }
+
+  console.log(savedQuotes);
+  return savedQuotes;
+}
+
+// display on the web
+
+function renderQuotes() {
+  const savedQuotes = getQuote();
+
+  quoteList.innerHTML = "";
+
+  savedQuotes.forEach((quote) => {
+    const li = document.createElement("li");
+    li.classList.add("li");
+
+    quoteList.innerHTML = `<h4>${quote}</h4>`;
+    quoteList.appendChild(li);
+  });
+}
+
+renderQuotes();
+//
