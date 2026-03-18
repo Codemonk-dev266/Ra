@@ -1,4 +1,4 @@
-s; // git and git hub are used for version control .
+ // git and git hub are used for version control .
 // Version is a system that records changes to code over time
 // so that you can track history , collaborate safely
 // and revert to previous state
@@ -59,7 +59,6 @@ s; // git and git hub are used for version control .
 // you amy encure cost
 // your may be abused
 
-
 // Branching and merging
 // allows you to work on new features , fix bugs and experiment safely without affecting the main code
 
@@ -69,16 +68,14 @@ s; // git and git hub are used for version control .
 // to switch to a new branch
 // git chechout ...name of your branch...
 
-// to ceate a branch and switch on it 
+// to ceate a branch and switch on it
 // git checkout -b ...name of your branch
 
-
-// 
+//
 // git branch
 
 // to get all the code in the main
 // git pull name of the branch
-
 
 // git checkout main
 // git pull origin main
@@ -88,3 +85,30 @@ s; // git and git hub are used for version control .
 // git push origin name of branch
 
 // pr is the request to merge your code into another branch
+
+const addBtn = document.getElementById("addBtn");
+const quoteBtn = document.getElementById("quoteBtn");
+const quoteList = document.getElementById("quoteList");
+const quoteInput = document.getElementById("quoteInput");
+const quoteText = document.getElementById("quoteText");
+
+let quotes = [
+  "He who laughs last laughs the best",
+  "The patient dog eats the fatest bone",
+  "He who fails to plan, plans to fail",
+  "Heaven help those who helps themselve",
+  "The stubborn roster ends in the soup kettle",
+];
+
+// a function to show the andom quotes
+
+function showRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  quoteText.textContent = quotes[randomIndex];
+}
+
+quoteBtn.addEventListener("click", () => {
+  showRandomQuote();
+});
+
+
