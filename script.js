@@ -100,7 +100,7 @@ let quotes = [
   "The stubborn roster ends in the soup kettle",
 ];
 
-// a function to show the andom quotes
+// a function to show the random quotes
 
 function showRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
