@@ -172,4 +172,3 @@ function renderQuotes() {
 }
 
 renderQuotes();
-//
