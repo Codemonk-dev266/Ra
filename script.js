@@ -125,13 +125,14 @@ function addQuote() {
   saveQuotes();
 
   quoteInput.value = "";
+
   renderQuotes();
 }
 
 addBtn.addEventListener("click", () => {
   addQuote();
 
-  // console.log(quotes);
+  console.log(quotes);
 });
 
 //save the quotes to local storage
@@ -147,22 +148,25 @@ function getQuote() {
     return;
   }
 
+  console.log(savedQuotes);
   return savedQuotes;
 }
 
-// display the quotes on the web
+// display on the web
 
 function renderQuotes() {
   const savedQuotes = getQuote();
 
   quoteList.innerHTML = "";
 
-  quotes.forEach((quote) => {
-    const li = document.createElement("li");
+  if (!savedQuotes) return;
 
+  savedQuotes.forEach((quote) => {
+    const li = document.createElement("li");
     li.classList.add("li");
 
-    li.innerHTML = `<li>${quote}</li>`;
+    li.innerHTML = `<h4>${quote}</h4>`;
+
     quoteList.appendChild(li);
   });
 }
