@@ -1,4 +1,4 @@
- // git and git hub are used for version control .
+// git and git hub are used for version control .
 // Version is a system that records changes to code over time
 // so that you can track history , collaborate safely
 // and revert to previous state
@@ -92,7 +92,7 @@ const quoteList = document.getElementById("quoteList");
 const quoteInput = document.getElementById("quoteInput");
 const quoteText = document.getElementById("quoteText");
 
-let quotes = [
+let quotes = getQuote() || [
   "He who laughs last laughs the best",
   "The patient dog eats the fatest bone",
   "He who fails to plan, plans to fail",
@@ -111,4 +111,60 @@ quoteBtn.addEventListener("click", () => {
   showRandomQuote();
 });
 
+//declare an add function.
 
+function addQuote() {
+  const quote = quoteInput.value.trim();
+
+  if (!quote) {
+    return;
+  }
+
+  quotes.push(quote);
+
+  saveQuotes();
+
+  quoteInput.value = "";
+  renderQuotes();
+}
+
+addBtn.addEventListener("click", () => {
+  addQuote();
+
+  // console.log(quotes);
+});
+
+//save the quotes to local storage
+function saveQuotes() {
+  localStorage.setItem("quotes", JSON.stringify(quotes));
+}
+
+//getquote function
+
+function getQuote() {
+  const savedQuotes = JSON.parse(localStorage.getItem("quotes"));
+  if (!savedQuotes) {
+    return;
+  }
+
+  return savedQuotes;
+}
+
+// display the quotes on the web
+
+function renderQuotes() {
+  const savedQuotes = getQuote();
+
+  quoteList.innerHTML = "";
+
+  quotes.forEach((quote) => {
+    const li = document.createElement("li");
+
+    li.classList.add("li");
+
+    li.innerHTML = `<li>${quote}</li>`;
+    quoteList.appendChild(li);
+  });
+}
+
+renderQuotes();
