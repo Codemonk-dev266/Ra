@@ -92,7 +92,7 @@ const quoteList = document.getElementById("quoteList");
 const quoteInput = document.getElementById("quoteInput");
 const quoteText = document.getElementById("quoteText");
 
-let quotes = [
+let quotes = getQuote() || [
   "He who laughs last laughs the best",
   "The patient dog eats the fatest bone",
   "He who fails to plan, plans to fail",
@@ -125,6 +125,8 @@ function addQuote() {
   saveQuotes();
 
   quoteInput.value = "";
+
+  renderQuotes();
 }
 
 addBtn.addEventListener("click", () => {
@@ -157,11 +159,14 @@ function renderQuotes() {
 
   quoteList.innerHTML = "";
 
+  if (!savedQuotes) return;
+
   savedQuotes.forEach((quote) => {
     const li = document.createElement("li");
     li.classList.add("li");
 
-    quoteList.innerHTML = `<h4>${quote}</h4>`;
+    li.innerHTML = `<h4>${quote}</h4>`;
+
     quoteList.appendChild(li);
   });
 }
